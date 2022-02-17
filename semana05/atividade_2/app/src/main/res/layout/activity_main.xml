@@ -13,4 +13,13 @@
         android:text="Light intensity: "
         tools:layout_editor_absoluteX="16dp"
         tools:layout_editor_absoluteY="44dp" />
+
+    <TextView
+        android:id="@+id/textViewTemperature"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="16dp"
+        android:text="Temperature: "
+        app:layout_constraintTop_toBottomOf="@+id/textViewLight"
+        tools:layout_editor_absoluteX="17dp" />
 </androidx.constraintlayout.widget.ConstraintLayout>

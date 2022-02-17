@@ -14,8 +14,10 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
 
     private SensorManager sensorManager;
     private Sensor light;
+    private Sensor temperature;
 
     TextView lightView;
+    TextView temperatureView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -23,22 +25,34 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         setContentView(R.layout.activity_main);
 
         lightView = (TextView) findViewById(R.id.textViewLight);
+        temperatureView = (TextView) findViewById(R.id.textViewTemperature);
 
         sensorManager = (SensorManager) getSystemService(Context.SENSOR_SERVICE);
-        light =sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
 
+        light = sensorManager.getDefaultSensor(Sensor.TYPE_LIGHT);
         if (light != null) {
             sensorManager.registerListener(MainActivity.this, light, SensorManager.SENSOR_DELAY_NORMAL);
         } else {
             lightView.setText("Light sensor not supported");
+        }
+
+        temperature = sensorManager.getDefaultSensor(Sensor.TYPE_AMBIENT_TEMPERATURE);
+        if (temperature != null) {
+            sensorManager.registerListener(this, temperature, SensorManager.SENSOR_DELAY_NORMAL);
+        } else {
+            temperatureView.setText("Temperature sensor not supported");
         }
     }
 
     @Override
     public void onSensorChanged(SensorEvent sensorEvent) {
         Sensor sensor = sensorEvent.sensor;
-        if (sensor.getType() == Sensor.TYPE_LIGHT) {
+        int sensorType = sensor.getType();
+        if (sensorType == Sensor.TYPE_LIGHT) {
             lightView.setText("Light intensity: " + sensorEvent.values[0]);
+        }
+        if (sensorType == Sensor.TYPE_AMBIENT_TEMPERATURE) {
+            temperatureView.setText("Temperature: " + sensorEvent.values[0]);
         }
     }
 
