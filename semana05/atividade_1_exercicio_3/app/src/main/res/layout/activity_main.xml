@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".MainActivity">
+
+    <EditText
+        android:id="@+id/editTextX"
+        android:layout_width="116dp"
+        android:layout_height="43dp"
+        android:ems="10"
+        android:hint="X"
+        android:inputType="textPersonName"
+        tools:layout_editor_absoluteX="17dp"
+        tools:layout_editor_absoluteY="30dp" />
+
+    <EditText
+        android:id="@+id/editTextY"
+        android:layout_width="107dp"
+        android:layout_height="42dp"
+        android:layout_marginStart="12dp"
+        android:ems="10"
+        android:hint="Y"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/editTextX"
+        tools:layout_editor_absoluteY="31dp" />
+
+    <EditText
+        android:id="@+id/editTextZ"
+        android:layout_width="115dp"
+        android:layout_height="43dp"
+        android:layout_marginStart="14dp"
+        android:ems="10"
+        android:hint="Z"
+        android:inputType="textPersonName"
+        app:layout_constraintStart_toEndOf="@+id/editTextY"
+        tools:layout_editor_absoluteY="31dp" />
+</androidx.constraintlayout.widget.ConstraintLayout>
