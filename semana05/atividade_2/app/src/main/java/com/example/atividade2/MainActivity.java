@@ -1,14 +1,20 @@
 package com.example.atividade2;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 
+import android.Manifest;
 import android.content.Context;
 import android.hardware.Sensor;
 import android.hardware.SensorEvent;
 import android.hardware.SensorEventListener;
 import android.hardware.SensorManager;
+import android.location.Location;
 import android.os.Bundle;
+import android.view.View;
+import android.widget.Button;
 import android.widget.TextView;
+import android.widget.Toast;
 
 public class MainActivity extends AppCompatActivity implements SensorEventListener {
 
@@ -42,6 +48,21 @@ public class MainActivity extends AppCompatActivity implements SensorEventListen
         } else {
             temperatureView.setText("Temperature sensor not supported");
         }
+
+        Button getGPSBtn = (Button) findViewById(R.id.buttonShowGPS);
+        ActivityCompat.requestPermissions(MainActivity.this, new String[] {Manifest.permission.ACCESS_FINE_LOCATION}, 123);
+        getGPSBtn.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                GPSTracker g = new GPSTracker(getApplicationContext());
+                Location l = g.getLocation();
+                if (l != null) {
+                    double lat = l.getLatitude();
+                    double longi = l.getLongitude();
+                    Toast.makeText(getApplicationContext(), "LAT: " + lat + ", LONG: " + longi, Toast.LENGTH_LONG).show();
+                }
+            }
+        });
     }
 
     @Override
